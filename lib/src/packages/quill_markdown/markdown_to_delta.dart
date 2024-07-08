@@ -291,16 +291,15 @@ class MarkdownToDelta extends Converter<String, Delta>
     }
 
     if (!_justPreviousBlockExit &&
-        (_isTopLevelNode(element) ||
-            _haveBlockAttrs(element) ||
+        (_haveBlockAttrs(element) ||
             element.tag == 'li')) {
       _justPreviousBlockExit = true;
       _insertNewLine();
       return;
     }
   }
-
-  bool _isTopLevelNode(md.Node node) => _topLevelNodes.contains(node);
+  //removed because i coudn't figure out a way to add a wrapper-object around the converted markdown.
+  // bool _isTopLevelNode(md.Node node) => _topLevelNodes.contains(node);
 
   Map<String, dynamic>? _effectiveBlockAttrs() {
     if (_activeBlockAttributes.isEmpty) return null;
